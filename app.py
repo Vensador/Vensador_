@@ -40,6 +40,8 @@ init_db()
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
+    if not os.path.exists('uploads'):
+        os.makedirs('uploads')
     if 'file' not in request.files:
         return jsonify({"error": "Файл не найден"}), 400
         
